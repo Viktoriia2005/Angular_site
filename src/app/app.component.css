@@ -1,0 +1,80 @@
+h1 {
+    margin-top: 20px;
+    animation-name: moveUpDown;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th,
+td {
+    text-align: center;
+    border: 1px solid #090909;
+    padding: 8px;
+    animation-name: cellColorChange;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cellColorChange {
+    0% {
+        background-color: #F08080;
+    }
+
+    25% {
+        background-color: #FFB6C1;
+    }
+
+    50% {
+        background-color: #FFA500;
+    }
+
+    75% {
+        background-color: #FFD700;
+    }
+
+    100% {
+        background-color: #F08080;
+    }
+}
+
+input[type="text"],
+input[type="checkbox"] {
+    border: 1px solid #4ee8e5;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+button {
+    background-color: #FFA500;
+    color: rgb(0, 0, 0);
+    font-style: italic;
+    font-family: 'Arial';
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cfff70;
+}
