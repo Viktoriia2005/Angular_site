@@ -1,0 +1,28 @@
+<section class="students-list">
+    <h2 class="section-title">Список учнів</h2>
+
+    <table class="students-table">
+        <tr>
+            <th>Ім'я</th>
+            <th>Дата народження</th>
+        </tr>
+        <tr *ngFor="let student of students">
+            <td>{{ student.name }}</td>
+            <td>{{ student.birthDate }}</td>
+        </tr>
+    </table>
+</section>
+
+<section class="add-student-form">
+    <h2 class="section-title">Додати учня</h2>
+
+    <form (ngSubmit)="addStudent()" class="student-form">
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" [(ngModel)]="newStudent.name" required>
+
+        <label for="birthDate">Дата народження:</label>
+        <input type="date" id="birthDate" [(ngModel)]="newStudent.birthDate" required>
+
+        <button type="submit">Додати</button>
+    </form>
+</section>
