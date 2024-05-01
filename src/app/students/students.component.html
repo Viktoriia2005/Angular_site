@@ -16,13 +16,13 @@
 <section class="add-student-form">
     <h2 class="section-title">Додати учня</h2>
 
-    <form (ngSubmit)="addStudent()" class="student-form">
+    <form name="form" (ngSubmit)="addStudent()" class="student-form">
         <label for="name">Ім'я:</label>
-        <input type="text" id="name" [(ngModel)]="newStudent.name" required>
+        <input type="text" id="name" name="dddd" [(ngModel)]="newStudent.name" required>
 
         <label for="birthDate">Дата народження:</label>
-        <input type="date" id="birthDate" [(ngModel)]="newStudent.birthDate" required>
+        <input type="date" id="birthDate" name="ffff" [(ngModel)]="newStudent.birthDate" required>
 
-        <button type="submit">Додати</button>
+        <button name="wwww" type="submit">Додати</button>
     </form>
 </section>

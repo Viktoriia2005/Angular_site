@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  standalone = true;
   inputText: string = '';
   checkboxValue: boolean = false;
 
