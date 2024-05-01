@@ -11,7 +11,6 @@ interface Student {
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent {
-  @Input() studentsData: Student[] = [];
   @Output() studentSelected = new EventEmitter<any>();
 
   students: Student[] = [
