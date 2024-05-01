@@ -9,7 +9,18 @@
         <tr *ngFor="let student of students">
             <td>{{ student.name }}</td>
             <td>{{ student.birthDate }}</td>
+          </tr>
+    </table>
+    <h2 class="section-title">Нові учні</h2>
+    <table class="students-table">
+        <tr>
+            <th>Ім'я</th>
+            <th>Дата народження</th>
         </tr>
+        <tr *ngFor="let student of studentsData" (click)="onSelectStudent(student)">
+            <td>{{ student.name }}</td>
+            <td>{{ student.birthDate }}</td>
+          </tr>
     </table>
 </section>
 

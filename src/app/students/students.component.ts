@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 interface Student {
   name: string;
@@ -11,10 +11,17 @@ interface Student {
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent {
+  @Input() studentsData: Student[] = [];
+  @Output() studentSelected = new EventEmitter<any>();
+
   students: Student[] = [
     { name: 'Сидоров Андрій', birthDate: '2001-05-25' },
     { name: 'Петров Іван', birthDate: '2002-10-15' }
   ];
+
+  onSelectStudent(student: any) {
+    this.studentSelected.emit(student);
+  }
 
   newStudent: Student = {
     name: '',
