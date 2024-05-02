@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit()">
+    <label for="name">Ім'я:</label>
+    <input type="text" [(ngModel)]="student.name" name="name" />
+    <label for="dob">Дата народження:</label>
+    <input type="date" id="dob" name="dob" [(ngModel)]="student.dob" required>
+    <button type="submit">Додати</button>
+  </form>
+  

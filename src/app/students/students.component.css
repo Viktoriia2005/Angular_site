@@ -1,9 +1,14 @@
 .students-list,
 .add-student-form {
     margin-bottom: 30px;
+    text-align: center;
 }
 
-.section-title {
+.addPop-up {
+    left: 55px;
+}
+
+/* .section-title {
     font-size: 22px;
     margin-bottom: 10px;
 }
@@ -41,4 +46,4 @@
 
 .student-form button:hover {
     background-color: #0056b3;
-}
+} */

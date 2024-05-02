@@ -15,4 +15,5 @@ export class AppComponent {
     console.log('Введений текст:', this.inputText);
     console.log('Стан чекбокса:', this.checkboxValue);
   }
+
 }

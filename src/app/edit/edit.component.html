@@ -1,0 +1,17 @@
+<button mat-button (click)="openEditModal()">Edit Student</button>
+
+<app-pop-up *ngIf="showEditModal">
+  <h2 mat-dialog-title>Edit Student</h2>
+  <mat-dialog-content>
+    <label for="edit-name">Ім'я:</label>
+    <input type="text" id="edit-name" name="edit-name" [(ngModel)]="editedStudent.name" required>
+    <label for="edit-dob">Дата народження:</label>
+    <input type="date" id="edit-dob" name="edit-dob" [(ngModel)]="editedStudent.dob" required>
+    <button type="submit">Зберегти</button>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+  </mat-dialog-actions>
+</app-pop-up>
+  

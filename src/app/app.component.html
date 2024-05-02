@@ -1,46 +1,5 @@
 <body>
-<h1>Hello world!!</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Колонка 1</th>
-      <th>Колонка 2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-<div>
-  <input type="text" [(ngModel)]="inputText" maxlength="20">
-</div>
-<div>
-  <input type="checkbox" [(ngModel)]="checkboxValue">
-</div>
-<div>
-  <button (click)="handleButtonClick()">Натисни мене</button>
-</div>
-<!-- <app-students></app-students> -->
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
-  <mat-icon>menu</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="/students">
-    <mat-icon>people</mat-icon>
-    <span>Students</span>
-  </button>
-  <button mat-menu-item routerLink="/about">
-    <mat-icon>info</mat-icon>
-    <span>About</span>
-  </button>
-</mat-menu>
-<router-outlet></router-outlet>
+  <app-menu></app-menu>
+<!-- <button (click)="toggleMenu()">Показати/Приховати меню</button> -->
 
 </body>
