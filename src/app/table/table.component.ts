@@ -1,5 +1,12 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsersDatasourceInterface } from '../datasource/users-datasource-interface';
+import { UserModel } from '../models/user-model';
+import { UsersDatasource } from '../datasource/users-datasource';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogElementsExampleDialog } from '../pop-up/dialog-elements';
+import { PopUpDeleteComponent } from '../pop-up/pop-upDelete';
+
 
 @Component({
   selector: 'app-students-table',
@@ -11,32 +18,67 @@ export class StudentsTableComponent {
   @Output() deleteStudent = new EventEmitter<any>();
   @Output() studentsChanged = new EventEmitter<any[]>();
 
-  students = [
-    { name: 'Іван', birthDate: '01.01.2000' },
-    { name: 'Марія', birthDate: '15.05.2001' },
-    { name: 'Петро', birthDate: '20.11.2002' }
-  ];
-  constructor(private router: Router, private route: ActivatedRoute) {}
-  emitStudents() {
-    this.studentsChanged.emit(this.students); // Відправити масив студентів через подію
-  
-    // Переадресація на сторінку студентів разом з параметром students
-    this.router.navigate(['students'], { queryParams: { students: JSON.stringify(this.students) } });
+  studentsDatasource: UsersDatasourceInterface = new UsersDatasource();
+  displayedColumns: string[] = ['id', 'name', 'birthdate', 'city', 'actions'];
+
+  constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
+
+
+
+  onEdit(student: UserModel): void {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
+      width: '250px',
+      data: { action: 'edit', student: student }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+
+        student.name = result.name;
+        student.birthdate = result.birthDate;
+      }
+    });
   }
 
-  onEdit(student: any) {
-    this.editStudent.emit(student);
+  openEditDialog(student: UserModel): void {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
+      width: '250px',
+      data: { action: 'edit', student: student }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+
+        student.name = result.name;
+        student.birthdate = result.birthDate;
+      }
+    });
   }
 
-  onDelete(student: any) {
-    const index = this.students.indexOf(student);
-    if (index !== -1) {
-      this.students.splice(index, 1);
-      this.deleteStudent.emit(student); // Відправити подію видалення студента
-    }
+
+  openDeleteDialog(student: UserModel): void {
+    const dialogRef = this.dialog.open(PopUpDeleteComponent, {
+      width: '250px',
+      data: { student: student }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.onDelete(student);
+      }
+    });
   }
 
-  saveStudent(newStudent: any) {
-    this.students.push(newStudent);
+  onDelete(student: UserModel): void {
+    this.studentsDatasource.deleteUser(student);
+    this.deleteStudent.emit(student);
+  }
+
+
+  saveStudent(newStudent: UserModel) {
+    this.studentsDatasource.addUser(newStudent);
   }
 }

@@ -1,19 +1,5 @@
-<button class="addPop-up" mat-button (click)="openDialog()">Add</button>
+<button class="addPop-up" mat-flat-button color="accent" mat-button (click)="openAddDialog()">Add</button>
 <section class="students-list">
     <h2 class="section-title">Список учнів</h2>
     <app-students-table (studentsChanged)="students = $event"></app-students-table>
 </section>
-
-<!-- <section class="add-student-form">
-    <h2 class="section-title">Додати учня</h2>
-
-    <form name="form" (ngSubmit)="addStudent()" class="student-form">
-        <label for="name">Ім'я:</label>
-        <input type="text" id="name" name="dddd" [(ngModel)]="newStudent.name" required>
-
-        <label for="birthDate">Дата народження:</label>
-        <input type="date" id="birthDate" name="ffff" [(ngModel)]="newStudent.birthDate" required>
-
-        <button name="wwww" type="submit">Додати</button>
-    </form>
-</section> -->

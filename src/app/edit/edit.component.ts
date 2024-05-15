@@ -21,7 +21,7 @@ export class EditComponent {
 
   save() {
     if (this.editedStudent) {
-      this.studentsTable.saveStudent(this.editedStudent); // Викликаємо метод для збереження учня
+      // this.studentsTable.saveStudent(this.editedStudent); // Викликаємо метод для збереження учня
     }
     this.closeModal();
   }

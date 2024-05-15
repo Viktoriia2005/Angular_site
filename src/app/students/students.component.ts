@@ -17,7 +17,20 @@ export class StudentsComponent {
   @Input() students: Student[] = [];
   constructor(public dialog: MatDialog) {}
 
-  openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
+      width: '250px',
+      data: { action: 'add', student: { name: '', birthDate: '' } }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.students.push({
+          name: result.name,
+          birthDate: result.birthDate
+        });
+      }
+    });
   }
 }

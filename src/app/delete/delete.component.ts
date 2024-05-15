@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class DeleteComponent {
   onDelete() {
-    // Опрацьовуємо видалення учня, наприклад, видаляємо його зі списку учнів
     console.log('Видалено учня');
   }
 }
