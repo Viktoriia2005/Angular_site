@@ -24,7 +24,11 @@ export class QuestionDialogComponent {
       height: '200px',
       data: { question: question, title: title, positiveButton: positiveButton, negativeButton: negativeButton }
     });
-    const dialogResult = await dialogRef.afterClosed().toPromise();
+    const dialogResult = new Promise<string>((resolve) => {
+      dialogRef.afterClosed().subscribe((result: string) => {
+        resolve(result);
+      });
+    })
     return dialogResult;
   }
 
