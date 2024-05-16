@@ -5,7 +5,7 @@ import { UserModel } from '../models/user-model';
 import { UsersDatasource } from '../datasource/users-datasource';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogElementsExampleDialog } from '../pop-up/dialog-elements';
-import { PopUpDeleteComponent } from '../pop-up/pop-upDelete';
+import { QuestionDialogComponent } from '../pop-up/question-dialog.component';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { PopUpDeleteComponent } from '../pop-up/pop-upDelete';
 })
 export class StudentsTableComponent {
   @Output() editStudent = new EventEmitter<any>();
-  @Output() deleteStudent = new EventEmitter<any>();
+  @Output() deleteStudentEvent = new EventEmitter<any>();
   @Output() studentsChanged = new EventEmitter<any[]>();
 
   studentsDatasource: UsersDatasourceInterface = new UsersDatasource();
@@ -41,40 +41,16 @@ export class StudentsTableComponent {
     });
   }
 
-  openEditDialog(student: UserModel): void {
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-      width: '250px',
-      data: { action: 'edit', student: student }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-
-        student.name = result.name;
-        student.birthdate = result.birthDate;
-      }
-    });
-  }
-
-
-  openDeleteDialog(student: UserModel): void {
-    const dialogRef = this.dialog.open(PopUpDeleteComponent, {
-      width: '250px',
-      data: { student: student }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-        this.onDelete(student);
-      }
-    });
+  async deleteStudent(student: UserModel) {
+    const dialogResult = await QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?');
+    if (dialogResult === 'positive') {
+      this.onDelete(student);
+    }
   }
 
   onDelete(student: UserModel): void {
     this.studentsDatasource.deleteUser(student);
-    this.deleteStudent.emit(student);
+    this.deleteStudentEvent.emit(student);
   }
 
 

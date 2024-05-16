@@ -22,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PopUpDeleteComponent } from './pop-up/pop-upDelete';
+import { QuestionDialogComponent } from './pop-up/question-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { PopUpDeleteComponent } from './pop-up/pop-upDelete';
     DialogElementsExampleDialog,
     PopUpComponent,
     StudentsTableComponent,
-    PopUpDeleteComponent
+    QuestionDialogComponent
   ],
   imports: [
     BrowserModule,

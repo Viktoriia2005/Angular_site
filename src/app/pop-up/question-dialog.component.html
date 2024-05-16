@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+  <p [innerHTML]="data.question"></p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [matDialogClose]="'positive'" color="warn">{{data.positiveButton}}</button>
+  <button mat-button [matDialogClose]="'negative'">{{data.negativeButton}}</button>
+</mat-dialog-actions>
