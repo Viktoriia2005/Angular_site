@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { DialogElementsExampleDialog } from '../pop-up/dialog-elements';
+import { EditUserComponent } from '../pop-up/edit-user.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserModel } from '../models/user-model';
+import { NodeWithI18n } from '@angular/compiler';
 
 
 export interface Student {
@@ -14,23 +16,13 @@ export interface Student {
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent {
-  @Input() students: Student[] = [];
-  constructor(public dialog: MatDialog) {}
+  @Input() students: UserModel[] = [];
+  constructor(public dialog: MatDialog) { }
 
-  openAddDialog(): void {
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-      width: '250px',
-      data: { action: 'add', student: { name: '', birthDate: '' } }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-        this.students.push({
-          name: result.name,
-          birthDate: result.birthDate
-        });
-      }
-    });
+  async openAddDialog() {
+    const newStudent = await EditUserComponent.show(this.dialog)
+    if (newStudent) {
+      this.students.push(newStudent);
+    }
   }
 }

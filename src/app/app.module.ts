@@ -6,14 +6,14 @@ import { StudentsComponent } from './students/students.component';
 import { AboutComponent } from './about/about.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddStudentsComponent } from './add-students/add-students.component';
 import { EditComponent } from './edit/edit.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogElementsExampleDialog } from './pop-up/dialog-elements';
+import { EditUserComponent } from './pop-up/edit-user.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { StudentsTableComponent } from './table/table.component';
 import { MatTableModule } from '@angular/material/table';
@@ -23,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { QuestionDialogComponent } from './pop-up/question-dialog.component';
+import { AppRoutingModule } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -32,25 +33,27 @@ import { QuestionDialogComponent } from './pop-up/question-dialog.component';
     AddStudentsComponent,
     EditComponent,
     MenuComponent,
-    DialogElementsExampleDialog,
+    EditUserComponent,
     PopUpComponent,
     StudentsTableComponent,
     QuestionDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
-    BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
-    FormsModule,
+    AppRoutingModule,
     RouterModule.forRoot([
       { path: 'students', component: StudentsComponent },
       { path: 'about', component: AboutComponent },

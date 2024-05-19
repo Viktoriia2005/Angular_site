@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ action === 'edit' ? 'Edit Student' : 'Add Student' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="recordForm" autocomplete="on" class="">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <!-- <input matInput [(ngModel)]="data.student.name" name="name" required> -->
+      <label class="control-label" style="width: 90px;" for="nameField">Name: </label>
+      <input id="nameField" formControlName="nameField" required class="form-control" [autofocus] type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="data.birthdate" name="birthdate" required>
+      <!-- Використовуємо правильне поле -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <mat-select [(ngModel)]="data.city" name="city" required>
+        <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">{{ action === 'edit' ? 'Save' : 'Add' }}</button>
+</mat-dialog-actions>

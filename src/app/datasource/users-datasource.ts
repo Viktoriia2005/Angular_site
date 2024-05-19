@@ -4,9 +4,9 @@ import { UsersDatasourceInterface } from "./users-datasource-interface";
 export class UsersDatasource implements UsersDatasourceInterface {
 
     private users: UserModel[] = [
-        new UserModel(1, 'Іван', new Date('01.01.2000'), 'Кременчук')
-        // { name1: 'Марія', birthDate: '15.05.2001' },
-        // { name: 'Петро', birthDate: '20.11.2002' }
+        new UserModel(1, 'Іван', new Date('01.01.2000'), 'Кременчук'),
+        // new UserModel(2, 'Марія', new Date('15.05.2001'), 'Кременчук'),
+        // new UserModel(3, 'Петро', new Date('20.11.2002'), 'Кременчук')
     ];
 
     public getUsers(): UserModel[] {

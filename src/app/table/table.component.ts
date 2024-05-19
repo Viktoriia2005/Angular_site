@@ -4,7 +4,7 @@ import { UsersDatasourceInterface } from '../datasource/users-datasource-interfa
 import { UserModel } from '../models/user-model';
 import { UsersDatasource } from '../datasource/users-datasource';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogElementsExampleDialog } from '../pop-up/dialog-elements';
+import { EditUserComponent } from '../pop-up/edit-user.component';
 import { QuestionDialogComponent } from '../pop-up/question-dialog.component';
 
 
@@ -23,29 +23,28 @@ export class StudentsTableComponent {
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
 
+  async onEdit(student: UserModel): Promise<void> {
 
-
-  onEdit(student: UserModel): void {
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-      width: '250px',
-      data: { action: 'edit', student: student }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-
-        student.name = result.name;
-        student.birthdate = result.birthDate;
-      }
-    });
+    const changedStudent=await EditUserComponent.show(this.dialog, student)
+    
+    if (changedStudent) {
+      student=changedStudent;
+      this.studentsDatasource.updateUser(student);
+      this.studentsChanged.emit(this.studentsDatasource.getUsers());
+    }
   }
 
   async deleteStudent(student: UserModel) {
-    const dialogResult = await QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?');
-    if (dialogResult === 'positive') {
-      this.onDelete(student);
-    }
+    // const dialogResult = await QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?');
+    QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?')
+    .then((result)=>{
+      if (result === 'positive') {
+        this.onDelete(student);
+      }
+    })
+    // if (dialogResult === 'positive') {
+    //   this.onDelete(student);
+    // }
   }
 
   onDelete(student: UserModel): void {
@@ -54,7 +53,9 @@ export class StudentsTableComponent {
   }
 
 
-  saveStudent(newStudent: UserModel) {
+  saveStudent(newStudent: UserModel): void {
     this.studentsDatasource.addUser(newStudent);
+    this.studentsChanged.emit(this.studentsDatasource.getUsers());
   }
+  
 }

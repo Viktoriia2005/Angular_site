@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Student } from '../students/students.model'; // Перевірте шлях до моделі студента
+import { UserModel } from '../models/user-model';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Student } from '../students/students.model'; // Перевірте шл
   styleUrls: ['./add-students.component.css']
 })
 export class AddStudentsComponent {
-  student: Student = { name: '', dob: '' };
+  student: UserModel = { id: -1, name: '', birthdate: new Date(), city: '' };
 
   onSubmit() {
     // Опрацьовуємо дані форми, наприклад, додаємо учня до списку учнів
