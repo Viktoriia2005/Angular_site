@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { EditUserComponent } from '../pop-up/edit-user.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UserModel } from '../models/user-model';
+import { UserModel } from '../../models/user.model';
 import { NodeWithI18n } from '@angular/compiler';
 
 

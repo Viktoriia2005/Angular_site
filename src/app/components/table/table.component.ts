@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsersDatasourceInterface } from '../datasource/users-datasource-interface';
-import { UserModel } from '../models/user-model';
-import { UsersDatasource } from '../datasource/users-datasource';
+import { UsersDatasourceInterface } from '../../datasource/users-datasource-interface';
+import { UserModel } from '../../models/user.model';
+import { UsersDatasource } from '../../datasource/users-datasource';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '../pop-up/edit-user.component';
 import { QuestionDialogComponent } from '../pop-up/question-dialog.component';

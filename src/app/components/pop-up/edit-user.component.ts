@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { UserModel } from '../models/user-model';
+import { UserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-edit-user',
