@@ -3,20 +3,17 @@
   <form [formGroup]="recordForm" autocomplete="on" class="">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <!-- <input matInput [(ngModel)]="data.student.name" name="name" required> -->
-      <label class="control-label" style="width: 90px;" for="nameField">Name: </label>
-      <input id="nameField" formControlName="nameField" required class="form-control" [autofocus] type="text">
+      <input matInput formControlName="nameField" required class="form-control" [autofocus] type="text">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="data.birthdate" name="birthdate" required>
-      <!-- Використовуємо правильне поле -->
+      <input matInput [matDatepicker]="picker" formControlName="birthdayField" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <mat-label>City</mat-label>
-      <mat-select [(ngModel)]="data.city" name="city" required>
+      <mat-select formControlName="cityField" required>
         <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
       </mat-select>
     </mat-form-field>

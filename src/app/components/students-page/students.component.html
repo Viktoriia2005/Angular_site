@@ -1,0 +1,8 @@
+<section class="students-list">
+    <h2 class="section-title">
+        <button mat-flat-button class="addPop-up" color="primary" mat-button
+            (click)="openAddDialog()"><mat-icon>add</mat-icon></button>
+        List of students
+    </h2>
+    <app-students-table (studentsChanged)="students = $event"></app-students-table>
+</section>

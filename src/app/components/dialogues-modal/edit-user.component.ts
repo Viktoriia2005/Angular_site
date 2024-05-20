@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../../models/user.model';
 
@@ -15,12 +15,9 @@ export class EditUserComponent implements OnInit {
   action: string = 'edit';
 
   recordForm = new UntypedFormGroup({
-    nameField: new UntypedFormControl('',
-      [Validators.required]),
-    birthdayField: new UntypedFormControl('',
-      [Validators.required]),
-    cityField: new UntypedFormControl('',
-      [Validators.required])
+    nameField: new UntypedFormControl('', [Validators.required]),
+    birthdayField: new UntypedFormControl('', [Validators.required]),
+    cityField: new UntypedFormControl('', [Validators.required])
   });
 
   constructor(
@@ -28,10 +25,11 @@ export class EditUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public componentData: UserModel
   ) {
     if (!componentData) {
-      componentData = new UserModel(-1, '', new Date(), '');
+      this.data = new UserModel(-1, '', new Date(), '');
       this.action = 'add';
+    } else {
+      this.data = componentData;
     }
-    this.data = componentData;
   }
 
   ngOnInit() {
@@ -48,8 +46,8 @@ export class EditUserComponent implements OnInit {
 
   onSave(): void {
     this.data.name = this.nameField?.value;
-    // this.data.birthdate = this.birthdayField?.value.toDate();
-    // this.data.city = this.cityField?.value;
+    this.data.birthdate = this.birthdayField?.value;
+    this.data.city = this.cityField?.value;
     this.dialogRef.close(this.data);
   }
 
@@ -59,7 +57,7 @@ export class EditUserComponent implements OnInit {
     }
     const dialogRef = dialog.open(EditUserComponent, {
       width,
-      height: '200px',
+      height: '370px',
       data: student
     });
 
@@ -67,7 +65,7 @@ export class EditUserComponent implements OnInit {
       dialogRef.afterClosed().subscribe((result: UserModel) => {
         resolve(result);
       });
-    })
+    });
     return dialogResult;
   }
 

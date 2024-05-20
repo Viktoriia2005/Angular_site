@@ -1,4 +1,3 @@
-// pop-up.component.ts
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from './edit-user.component';

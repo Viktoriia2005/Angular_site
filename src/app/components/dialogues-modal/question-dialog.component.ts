@@ -28,8 +28,7 @@ export class QuestionDialogComponent {
       dialogRef.afterClosed().subscribe((result: string) => {
         resolve(result);
       });
-    })
+    });
     return dialogResult;
   }
-
 }
