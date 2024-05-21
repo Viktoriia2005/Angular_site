@@ -1,3 +1,5 @@
+// file: edit-user.component.ts
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
@@ -20,12 +22,14 @@ export class EditUserComponent implements OnInit {
     cityField: new UntypedFormControl('', [Validators.required])
   });
 
+  static currentId: number = 1; // Initialize currentId
+
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public componentData: UserModel
   ) {
     if (!componentData) {
-      this.data = new UserModel(-1, '', new Date(), '');
+      this.data = new UserModel(EditUserComponent.currentId++, '', new Date(), ''); // Generate a unique ID
       this.action = 'add';
     } else {
       this.data = componentData;

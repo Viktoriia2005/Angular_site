@@ -1,4 +1,6 @@
-<table mat-table [dataSource]="studentsDatasource.getUsers()" class="mat-elevation-z8">
+<!-- file: table.component.html -->
+
+<table mat-table [dataSource]="sortedData" class="mat-elevation-z8">
 
   <!-- Id Column -->
   <ng-container matColumnDef="id">

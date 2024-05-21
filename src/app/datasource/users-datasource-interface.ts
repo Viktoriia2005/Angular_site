@@ -1,11 +1,11 @@
 import { UserModel } from "../models/user.model";
 
 export interface UsersDatasourceInterface {
-    getUsers(): UserModel[];
+    getUsers(): Promise<UserModel[]>;
 
-    addUser(newUser: UserModel): void;
+    addUser(newUser: UserModel): Promise<void>;
 
-    updateUser(user: UserModel): void;
+    updateUser(user: UserModel): Promise<void>;
 
-    deleteUser(user: UserModel): void;
+    deleteUser(user: UserModel): Promise<void>;
 }

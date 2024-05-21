@@ -4,8 +4,9 @@ import { UsersDatasourceInterface } from '../../datasource/users-datasource-inte
 import { UserModel } from '../../models/user.model';
 import { UsersDatasource } from '../../datasource/users-datasource';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserComponent } from '../dialogues-modal/edit-user.component';
-import { QuestionDialogComponent } from '../dialogues-modal/question-dialog.component';
+import { EditUserComponent } from '../dialogs/edit-user.component';
+import { QuestionDialogComponent } from '../dialogs/question-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -18,27 +19,39 @@ export class StudentsTableComponent {
   @Output() deleteStudentEvent = new EventEmitter<any>();
   @Output() studentsChanged = new EventEmitter<any[]>();
 
-  studentsDatasource: UsersDatasourceInterface = new UsersDatasource();
+  sortedData = new MatTableDataSource();
+
+  // studentsDatasource: UsersDatasourceInterface = new UsersDatasource();
   displayedColumns: string[] = ['id', 'name', 'birthdate', 'city', 'actions'];
 
-  constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
+    private dataSource: UsersDatasource
+  ) {
+    this.refreshData();
+  }
+
+  async refreshData() {
+    this.sortedData.data = this.dataSource.getUsers();
+  }
 
   async onEdit(student: UserModel): Promise<void> {
 
-    const changedStudent = await EditUserComponent.show(this.dialog, student)
+    const changedStudent = await EditUserComponent.show(this.dialog, { ...student })
 
     if (changedStudent) {
       student = changedStudent;
-      this.studentsDatasource.updateUser(student);
-      this.studentsChanged.emit(this.studentsDatasource.getUsers());
+      this.dataSource.updateUser(student);
+      await this.refreshData();
+      // this.studentsChanged.emit(this.dataSource.getUsers());
     }
   }
 
   async deleteStudent(student: UserModel) {
     const dialogResult = await QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?');
     if (dialogResult === 'positive') {
-      this.studentsDatasource.deleteUser(student);
-      this.deleteStudentEvent.emit(student); // Move the event emission inside the confirmation check
+      this.dataSource.deleteUser(student);
+      await this.refreshData();
+      // this.deleteStudentEvent.emit(student); // Move the event emission inside the confirmation check
     }
   }
 
@@ -51,8 +64,8 @@ export class StudentsTableComponent {
     const savedStudent = await EditUserComponent.show(this.dialog, newStudent);
 
     if (savedStudent) {
-      this.studentsDatasource.addUser(savedStudent);
-      this.studentsChanged.emit(this.studentsDatasource.getUsers());
+      // this.studentsDatasource.addUser(savedStudent);
+      // this.studentsChanged.emit(this.studentsDatasource.getUsers());
     }
   }
 }
