@@ -19,23 +19,27 @@ export class UsersDatasource implements UsersDatasourceInterface {
         return this.users;
     }
 
-    public async addUser(newUser: UserModel): Promise<void> {
+    public async addUser(newUser: UserModel): Promise<UserModel> {
         const maxId = Math.max(...this.users.map(user => user.id));
         newUser.id = maxId + 1;
         this.users.push(newUser);
+        return newUser;
     }
 
-    public async updateUser(updatedUser: UserModel): Promise<void> {
+    public async updateUser(updatedUser: UserModel): Promise<UserModel> {
         const userIdx = this.users.findIndex(e => e.id == updatedUser.id);
         if (userIdx >= 0) {
             this.users[userIdx] = { ...updatedUser };
         }
+        return updatedUser;
     }
 
-    public async deleteUser(user: UserModel): Promise<void> {
+    public async deleteUser(user: UserModel): Promise<boolean> {
         const userIdx = this.users.findIndex(e => e.id == user.id);
         if (userIdx !== -1) {
             this.users.splice(userIdx, 1);
+            return true;
         }
+        return false;
     }
 }

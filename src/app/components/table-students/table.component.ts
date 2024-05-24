@@ -31,7 +31,7 @@ export class StudentsTableComponent {
   }
 
   async refreshData() {
-    this.sortedData.data = this.dataSource.getUsers();
+    this.sortedData.data = await this.dataSource.getUsers();
   }
 
   async onEdit(student: UserModel): Promise<void> {
