@@ -11,7 +11,7 @@ import { UserModel } from '../../models/user.model';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  cities: string[] = ['Kyiv', 'Lviv', 'Odessa', 'Dnipro', 'Kharkiv'];
+  cities: string[] = ['Київ', 'Львів', 'Одеса', 'Дніпро', 'Харків', 'Кременчук'];
 
   data: UserModel;
   action: string = 'edit';

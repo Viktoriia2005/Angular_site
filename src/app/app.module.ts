@@ -12,7 +12,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserComponent } from './components/dialogs/edit-user.component';
-import { PopUpComponent } from './components/dialogs/pop-up.component';
 import { StudentsTableComponent } from './components/table-students/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { QuestionDialogComponent } from './components/dialogs/question-dialog.component';
 import { AppRoutingModule } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { AppRoutingModule } from './app.routes';
     AboutComponent,
     MenuComponent,
     EditUserComponent,
-    PopUpComponent,
     StudentsTableComponent,
     QuestionDialogComponent
   ],
@@ -50,6 +49,7 @@ import { AppRoutingModule } from './app.routes';
     MatSelectModule,
     MatNativeDateModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'students', component: StudentsComponent },
       { path: 'about', component: AboutComponent },

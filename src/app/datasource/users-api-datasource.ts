@@ -1,18 +1,37 @@
-import { UserModel } from "../models/user.model";
-import { UsersDatasourceInterface } from "./users-datasource-interface";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { UserModel } from '../models/user.model';
+import { UsersDatasourceInterface } from './users-datasource-interface';
+import { Observable, catchError, map, of } from 'rxjs';
 
-export class UsersApiDatasource implements UsersDatasourceInterface{
-    
-    getUsers(): UserModel[] {
-        throw new Error("Method not implemented.");
+@Injectable({
+    providedIn: 'root'
+})
+export class UsersApiDatasource implements UsersDatasourceInterface {
+
+    private apiUrl = 'http://localhost:4200/users';
+
+    constructor(private http: HttpClient) { }
+
+    getUsersAsync(): Observable<UserModel[]> {
+        return this.http.get<UserModel[]>(this.apiUrl);
     }
-    addUser(newUser: UserModel): void {
-        throw new Error("Method not implemented.");
+
+    addUserAsync(newUser: UserModel): Observable<UserModel> {
+        return this.http.post<UserModel>(this.apiUrl, newUser);
     }
-    updateUser(user: UserModel): void {
-        throw new Error("Method not implemented.");
+
+    updateUserAsync(updatedUser: UserModel): Observable<UserModel> {
+        return this.http.put<UserModel>(`${this.apiUrl}/${updatedUser.id}`, updatedUser);
     }
-    deleteUser(user: UserModel): void {
-        throw new Error("Method not implemented.");
+
+    deleteUserAsync(user: UserModel): Observable<boolean> {
+        return this.http.delete<void>(`${this.apiUrl}/${user.id}`).pipe(
+            map(() => true),
+            catchError(error => {
+                console.error("Error deleting user:", error);
+                return of(false);
+            })
+        );
     }
 }

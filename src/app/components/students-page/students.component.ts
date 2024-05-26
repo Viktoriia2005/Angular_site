@@ -21,7 +21,7 @@ export class StudentsComponent {
   async openAddDialog() {
     const newStudent = await EditUserComponent.show(this.dialog, undefined);
     if (newStudent) {
-      this.dataSource.addUser(newStudent);
+      this.dataSource.addUserAsync(newStudent);
       this.studentsTable.refreshData();
       this.studentAdded.emit(newStudent);
     }

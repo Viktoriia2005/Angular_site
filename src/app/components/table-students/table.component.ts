@@ -31,7 +31,7 @@ export class StudentsTableComponent {
   }
 
   async refreshData() {
-    this.sortedData.data = await this.dataSource.getUsers();
+    this.sortedData.data = await this.dataSource.getUsersAsync();
   }
 
   async onEdit(student: UserModel): Promise<void> {
@@ -40,7 +40,7 @@ export class StudentsTableComponent {
 
     if (changedStudent) {
       student = changedStudent;
-      this.dataSource.updateUser(student);
+      this.dataSource.updateUserAsync(student);
       await this.refreshData();
       // this.studentsChanged.emit(this.dataSource.getUsers());
     }
@@ -49,7 +49,7 @@ export class StudentsTableComponent {
   async deleteStudent(student: UserModel) {
     const dialogResult = await QuestionDialogComponent.show(this.dialog, 'Delete Student', 'Are you sure you want to delete this student?');
     if (dialogResult === 'positive') {
-      this.dataSource.deleteUser(student);
+      this.dataSource.deleteUserAsync(student);
       await this.refreshData();
       // this.deleteStudentEvent.emit(student); // Move the event emission inside the confirmation check
     }

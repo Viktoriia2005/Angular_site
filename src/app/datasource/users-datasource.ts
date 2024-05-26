@@ -11,22 +11,20 @@ export class UsersDatasource implements UsersDatasourceInterface {
 
     private users: UserModel[] = [
         new UserModel(1, 'Іван', new Date('01.01.2000'), 'Кременчук'),
-        // new UserModel(2, 'Марія', new Date('15.05.2001'), 'Кременчук'),
-        // new UserModel(3, 'Петро', new Date('20.11.2002'), 'Кременчук')
     ];
 
-    public async getUsers(): Promise<UserModel[]> {
+    public async getUsersAsync(): Promise<UserModel[]> {
         return this.users;
     }
 
-    public async addUser(newUser: UserModel): Promise<UserModel> {
+    public async addUserAsync(newUser: UserModel): Promise<UserModel> {
         const maxId = Math.max(...this.users.map(user => user.id));
         newUser.id = maxId + 1;
         this.users.push(newUser);
         return newUser;
     }
 
-    public async updateUser(updatedUser: UserModel): Promise<UserModel> {
+    public async updateUserAsync(updatedUser: UserModel): Promise<UserModel> {
         const userIdx = this.users.findIndex(e => e.id == updatedUser.id);
         if (userIdx >= 0) {
             this.users[userIdx] = { ...updatedUser };
@@ -34,7 +32,7 @@ export class UsersDatasource implements UsersDatasourceInterface {
         return updatedUser;
     }
 
-    public async deleteUser(user: UserModel): Promise<boolean> {
+    public async deleteUserAsync(user: UserModel): Promise<boolean> {
         const userIdx = this.users.findIndex(e => e.id == user.id);
         if (userIdx !== -1) {
             this.users.splice(userIdx, 1);
