@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '../dialogs/edit-user.component';
 import { QuestionDialogComponent } from '../dialogs/question-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { UsersApiDatasource } from '../../datasource/users-api-datasource';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class StudentsTableComponent {
   displayedColumns: string[] = ['id', 'name', 'birthdate', 'city', 'actions'];
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
-    private dataSource: UsersDatasource
+    private dataSource: UsersApiDatasource
   ) {
     this.refreshData();
   }
