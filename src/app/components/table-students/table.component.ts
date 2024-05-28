@@ -23,7 +23,7 @@ export class StudentsTableComponent {
   sortedData = new MatTableDataSource();
 
   // studentsDatasource: UsersDatasourceInterface = new UsersDatasource();
-  displayedColumns: string[] = ['id', 'name', 'birthdate', 'city', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'birthday', 'city', 'actions'];
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
     private dataSource: UsersApiDatasource

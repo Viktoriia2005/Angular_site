@@ -15,9 +15,9 @@
   </ng-container>
 
   <!-- Birthdate Column -->
-  <ng-container matColumnDef="birthdate">
-    <th mat-header-cell *matHeaderCellDef> Birthdate </th>
-    <td mat-cell *matCellDef="let student"> {{student.birthdate | date:'mediumDate'}} </td>
+  <ng-container matColumnDef="birthday">
+    <th mat-header-cell *matHeaderCellDef> Birthday </th>
+    <td mat-cell *matCellDef="let student"> {{student.birthday | date:'yyyy-MM-dd'}} </td>
   </ng-container>
 
   <!-- City Column -->

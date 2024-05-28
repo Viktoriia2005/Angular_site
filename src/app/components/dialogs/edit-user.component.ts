@@ -39,7 +39,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.recordForm.patchValue({
       nameField: this.data.name,
-      birthdayField: this.data.birthdate,
+      birthdayField: this.data.birthday,
       cityField: this.data.city,
     });
   }
@@ -50,7 +50,7 @@ export class EditUserComponent implements OnInit {
 
   onSave(): void {
     this.data.name = this.nameField?.value;
-    this.data.birthdate = this.birthdayField?.value;
+    this.data.birthday = this.birthdayField?.value;
     this.data.city = this.cityField?.value;
     this.dialogRef.close(this.data);
   }
