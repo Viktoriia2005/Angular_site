@@ -29,7 +29,7 @@ export class EditUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public componentData: UserModel
   ) {
     if (!componentData) {
-      this.data = new UserModel(EditUserComponent.currentId++, '', new Date(), ''); // Generate a unique ID
+      this.data = new UserModel(EditUserComponent.currentId++, '', new Date(), '',); // Generate a unique ID
       this.action = 'add';
     } else {
       this.data = componentData;
